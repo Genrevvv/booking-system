@@ -35,9 +35,9 @@ function fillBookingsTable() {
             
             if (data.length == 0) {
                 tr = tBody.insertRow();
-                td = tr.insertCell(0);
-                td.setAttribute('id', 'no-booking-found');
+                tr.setAttribute('id', 'no-booking-found');
 
+                td = tr.insertCell(0);
                 td.textContent = 'There are currently no booking.'
                 td.colSpan = 4
             }
@@ -88,7 +88,7 @@ function submitBookingEventListener() {
                     if (data['error'] === 'Invalid purpose') {
                         return;
                     }
-                    
+
                     console.log(data['error']);
 
                     message.innerHTML = '<p>Error: Unable to connecto to the database.</p>';
@@ -118,8 +118,8 @@ function submitBookingEventListener() {
                     const rowData = [bookingID, date, pax, purpose];
 
                     insertTableRow(rowData); 
-
-                   clearMessage();
+                
+                    clearMessage();
                 }
                 else {
                     message.innerHTML = '<p>Please fill up all the fields.</p>';
@@ -147,5 +147,9 @@ function insertTableRow(data) {
     for (let i = 0; i < data.length; i++) {
         td = tr.insertCell(i);
         td.textContent = data[i];
+    }
+
+    if (document.getElementById('no-booking-found')) {
+        document.getElementById('no-booking-found').remove();
     }
 }
