@@ -6,7 +6,7 @@
     $router = new Router;
 
     $router->add('/', function() {
-        header('Location: /pages/home.php');
+        header('Location: /pages/home.html');
         exit();
     });
 
