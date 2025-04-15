@@ -62,7 +62,7 @@
         $purpose = $data['purpose'];    
         
         $purposes = ['Chicken Jockey', 'Rest', 'Vacation', 'Other'];
-        
+            
         if (!in_array($purpose, $purposes)) {
             $response['error'] = 'Invalid purpose';
             echo json_encode($response);
