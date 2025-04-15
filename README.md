@@ -5,6 +5,7 @@ A simple booking system practice project in PHP.
 1. PHP
 2. SQLite3
 3. Web browser
+4. Reason to live (optional)
 
 ### How to run:
 1. Navigate to the project directory:
