@@ -55,9 +55,9 @@
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
     
-        $date = $data['date'];
-        $pax = $data['pax'];
-        $purpose = $data['purpose'];    
+        $date = $data['date'] ?? null;
+        $pax = $data['pax'] ?? null;
+        $purpose = $data['purpose'] ?? null;    
         
         $purposes = ['Chicken Jockey', 'Rest', 'Vacation', 'Other'];
             
@@ -67,7 +67,7 @@
             return;
         }
     
-        if (!isset($date, $pax, $purpose) || (empty($date) || empty($pax) || empty($purpose))) {
+        if ((empty($date) || empty($pax) || empty($purpose))) {
             $response['success'] = false;
             echo json_encode($response);
             return;
