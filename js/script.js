@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
 function fillBookingsTable() {
     const table = document.getElementById('bookings-table');
 
-    fetch('/routes/get-bookings.php')
+    fetch('/get-bookings')
         .then(res => res.json())
         .then(data => {
+            
             const headers = ['id', 'date', 'pax', 'purpose'];
 
             const tHead = table.createTHead();
@@ -80,7 +81,7 @@ function submitBookingEventListener() {
             body: JSON.stringify(bookingData)
         };
         
-        fetch('/routes/submit-booking.php', options)
+        fetch('/submit-booking', options)
             .then(res => res.json())
             .then(data => {
                 if (data['error']) {
@@ -107,7 +108,9 @@ function submitBookingEventListener() {
                                                 </tr>
                                             </table>`
 
+                    bookingID++;
                     const rowData = [bookingID, date, pax, purpose];
+                    
                     insertTableRow(rowData); 
 
                    clearMessage();
@@ -139,6 +142,4 @@ function insertTableRow(data) {
         td = tr.insertCell(i);
         td.textContent = data[i];
     }
-
-    bookingID++;
 }
