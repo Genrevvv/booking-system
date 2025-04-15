@@ -1,12 +1,12 @@
 ## Booking System
 A simple booking system practice project in PHP.
 
-## Requirements
+### Requirements
 1. PHP
 2. SQLite3
 3. Web browser
 
-## How to run:
+### How to run:
 1. Navigate to the project directory:
    ```bash
    cd booking-system
