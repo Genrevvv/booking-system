@@ -75,8 +75,8 @@
     
         $stmt = $db->prepare("INSERT INTO bookings (date, pax, purpose) VALUES (:date, :pax, :purpose)");
         $stmt->bindValue(':date', $date, SQLITE3_TEXT);
-        $stmt->bindValue('pax', $pax, SQLITE3_INTEGER);
-        $stmt->bindValue('purpose', $purpose, SQLITE3_TEXT);
+        $stmt->bindValue(':pax', $pax, SQLITE3_INTEGER);
+        $stmt->bindValue(':purpose', $purpose, SQLITE3_TEXT);
         
         $stmt->execute();
         $affectedRows = $db->changes();
