@@ -24,9 +24,7 @@
             return;
         }
     
-        $table_name = 'bookings';
-        
-        $query = 'SELECT * FROM ' . $table_name;
+        $query = 'SELECT * FROM bookings';
         $result = $db->query($query);
     
         $data = [];
@@ -75,18 +73,15 @@
             return;
         }
     
-        $table_name = 'bookings';
-        $query = sprintf(
-            "INSERT INTO %s (date, pax, purpose) VALUES ('%s', %d, '%s')",
-            $table_name,
-            $date,
-            $pax,
-            $purpose
-        );
-    
-        $success = $db->exec($query);
-    
-        if ($success) {
+        $stmt = $db->prepare("INSERT INTO bookings (date, pax, purpose) VALUES (:date, :pax, :purpose)");
+        $stmt->bindValue(':date', $date, SQLITE3_TEXT);
+        $stmt->bindValue('pax', $pax, SQLITE3_INTEGER);
+        $stmt->bindValue('purpose', $purpose, SQLITE3_TEXT);
+        
+        $stmt->execute();
+        $affectedRows = $db->changes();
+
+        if ($affectedRows > 0) {
             $response['success'] = true;
             echo json_encode($response);
         }
