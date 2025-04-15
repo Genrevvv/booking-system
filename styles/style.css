@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90vh;
+}
+
+.container .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* form */
+.container table tr td input[type="number"] {
+    width: 110px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container form input[type="submit"] {
+    width: 110px;
+}
+
+/* booking data */
+.container .content .inner-content {
+    display: flex;
+    max-height: 50vh;
+
+    overflow: auto;
+}
+
+#bookings-table {
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#bookings-table thead{
+    background-color: white;
+    box-shadow: 0 0 0 2px black;
+    position: sticky;
+    top: 0;
+    z-index: 2; 
+}
+
+#bookings-table th, #bookings-table td {
+    border: 1px solid black;
+    padding: 5px 20px;
+}
+
+#message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+
+    height: 75px;
+    margin: 0;
+}
+
+#message h4 {
+    padding: 5px;
+    margin: 0;
+}
+
+#message p {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+#message p span {
+    background-color: lightgray;
+    padding: 2px 5px;
+    border-radius: 10%;
+}
+
