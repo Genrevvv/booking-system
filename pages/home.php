@@ -26,9 +26,10 @@
                         <td>
                             <select name="purpose" id="purpose">
                                 <option value="" disabled selected>select and option</option>
-                                <option value="chicken-jockey">Chicken Jockey</option>
-                                <option value="rest">Rest</option>
-                                <option value="vacation">Vacation</option>
+                                <option value="Chicken Jockey">Chicken Jockey</option>
+                                <option value="Rest">Rest</option>
+                                <option value="Vacation">Vacation</option>
+                                <option value="Other">Other</option>
                             </select>
                         </td>
                     </tr>

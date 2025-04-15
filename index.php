@@ -60,6 +60,14 @@
         $date = $data['date'];
         $pax = $data['pax'];
         $purpose = $data['purpose'];    
+        
+        $purposes = ['Chicken Jockey', 'Rest', 'Vacation', 'Other'];
+        
+        if (!in_array($purpose, $purposes)) {
+            $response['error'] = 'Invalid purpose';
+            echo json_encode($response);
+            return;
+        }
     
         if (!isset($date, $pax, $purpose) || (empty($date) || empty($pax) || empty($purpose))) {
             $response['success'] = false;

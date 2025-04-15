@@ -85,6 +85,12 @@ function submitBookingEventListener() {
             .then(res => res.json())
             .then(data => {
                 if (data['error']) {
+                    if (data['error'] === 'Invalid purpose') {
+                        return;
+                    }
+                    
+                    console.log(data['error']);
+
                     message.innerHTML = '<p>Error: Unable to connecto to the database.</p>';
                     clearMessage();
 
@@ -110,7 +116,7 @@ function submitBookingEventListener() {
 
                     bookingID++;
                     const rowData = [bookingID, date, pax, purpose];
-                    
+
                     insertTableRow(rowData); 
 
                    clearMessage();
