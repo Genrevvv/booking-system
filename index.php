@@ -10,6 +10,19 @@
         exit();
     });
 
+    # /clear-table
+    $router->add('/clear-table', function() {
+        header('Contet-Type: appplication/json');
+
+        $db =connectDB();
+
+        $query = 'DELETE FROM bookings';
+        $db->exec($query);
+        $db->close();
+
+        echo json_encode(['success' => true]);
+    });
+
     # /get-bookings
     $router->add('/get-bookings', function() {
         header('Content-Type: application/json');
@@ -25,10 +38,10 @@
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
             $data[] = $row;
         }
-    
-        echo json_encode($data);
-    
+
         $db->close();    
+
+        echo json_encode($data);
     });
 
     # /submit-booking
@@ -69,12 +82,12 @@
         $stmt->execute();
         $affectedRows = $db->changes();
 
+        $db->close(); 
+
         if ($affectedRows > 0) {
             $response['success'] = true;
             echo json_encode($response);
         }
-    
-        $db->close(); 
     });
 
     function connectDB() {

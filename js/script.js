@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fillBookingsTable();
 
+    clearTableEventListener();
     submitBookingEventListener();
 });
 
@@ -34,12 +35,7 @@ function fillBookingsTable() {
             let key = '';
             
             if (data.length == 0) {
-                tr = tBody.insertRow();
-                tr.setAttribute('id', 'no-booking-found');
-
-                td = tr.insertCell(0);
-                td.textContent = 'There are currently no booking.'
-                td.colSpan = 4
+                insertMessageRow(tBody, 'There are currently no bookings.');
             }
             else {
                 for (let i = 0; i < data.length; i++) {
@@ -135,6 +131,37 @@ function submitBookingEventListener() {
             }); 
 
     });
+}
+
+function clearTableEventListener() {
+    document.getElementById('clear-table').addEventListener('click', () => {
+        const table = document.getElementById('bookings-table');
+        const tBody = table.tBodies[0];
+
+        fetch('/clear-table')
+            .then(res => res.json())
+            .then(data => {
+                if (data['success'] === true) {
+                    while (tBody.firstChild) {
+                        tBody.removeChild(tBody.firstChild);
+                    }
+                    
+                    insertMessageRow(tBody, 'There are currently no bookings.');
+            
+                    bookingID = 0;
+                } 
+            });
+    });
+}
+
+
+function insertMessageRow(tBody, message) {
+    const tr = tBody.insertRow();
+    tr.setAttribute('id', 'no-booking-found');
+
+    const td = tr.insertCell(0);
+    td.textContent = message;
+    td.colSpan = 4;
 }
 
 function insertTableRow(data) {
