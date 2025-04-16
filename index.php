@@ -10,19 +10,13 @@
         exit();
     });
 
-    // /get-bookings
+    # /get-bookings
     $router->add('/get-bookings', function() {
         header('Content-Type: application/json');
 
         $response = [];
         
-        try {
-            $db = new SQLite3('bookings.db');
-        } 
-        catch (Exception $e) {
-            echo json_encode(['error' => 'database conneciton failure.']);
-            return;
-        }
+        $db = connectDB();
     
         $query = 'SELECT * FROM bookings';
         $result = $db->query($query);
@@ -37,20 +31,14 @@
         $db->close();    
     });
 
-    // /submit-booking
+    # /submit-booking
     $router->add('/submit-booking', function() {
         header('Content-Type: application/json');
 
         $response = [];        
         $response['error'] = null;
         
-        try {
-            $db = new SQLite3('bookings.db');
-        } 
-        catch (Exception $e) {
-            echo json_encode(['error' => 'Unable to connect to database']);
-            return;
-        }
+        $db = connectDB();
     
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
@@ -58,14 +46,14 @@
         $date = $data['date'] ?? null;
         $pax = $data['pax'] ?? null;
         $purpose = $data['purpose'] ?? null;    
-        
-        $purposes = ['Chicken Jockey', 'Rest', 'Vacation', 'Other'];
-    
+            
         if ((empty($date) || empty($pax) || empty($purpose))) {
             $response['success'] = false;
             echo json_encode($response);
             return;
         }
+
+        $purposes = ['Chicken Jockey', 'Rest', 'Vacation', 'Other'];
 
         if (!in_array($purpose, $purposes)) {
             $response['error'] = 'Invalid purpose';
@@ -89,6 +77,16 @@
         $db->close(); 
     });
 
+    function connectDB() {
+        try {
+            return new SQLite3('bookings.db');
+        }
+        catch (Exception $e) {
+            echo json_encode(['error' => 'Unable to connect to database']);
+            exit();
+        }
+    }
+    
     $router->dispatch($path);
 ?>
  
