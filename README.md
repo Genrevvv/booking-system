@@ -1,7 +1,7 @@
 ## Booking System
 A simple booking system practice project in PHP.
 
-### Requirements
+### Requirements:
 1. PHP
 2. SQLite3
 3. Web browser
