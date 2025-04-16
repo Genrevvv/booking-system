@@ -16,8 +16,7 @@
 
         $db =connectDB();
 
-        $query = 'DELETE FROM bookings';
-        $db->exec($query);
+        $db->exec('DELETE FROM bookings');
         $db->close();
 
         echo json_encode(['success' => true]);
@@ -30,9 +29,14 @@
         $response = [];
         
         $db = connectDB();
+        $db->exec('CREATE TABLE IF NOT EXISTS bookings (
+                        id INTEGER PRIMARY KEY,
+                        date TEXT,
+                        pax INTEGER, 
+                        purpose TEXT
+                    )');
     
-        $query = 'SELECT * FROM bookings';
-        $result = $db->query($query);
+        $result = $db->query('SELECT * FROM bookings');
     
         $data = [];
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
