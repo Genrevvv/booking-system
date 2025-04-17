@@ -109,6 +109,9 @@ function submitBookingEventListener() {
                                                     <td>${purpose}</td>
                                                 </tr>
                                             </table>`
+                    message.style.backgroundColor = 'lightgrey';
+                    message.style.border = '1px solid black';
+
 
                     bookingID++;
                     const rowData = [bookingID, date, pax, purpose];
@@ -118,13 +121,16 @@ function submitBookingEventListener() {
                     clearMessage();
                 }
                 else {
-                    message.innerHTML = '<p>Please fill up all the fields.</p>';
+                    message.innerHTML = '<p class="error-message">Please fill up all the fields.</p>';
                     clearMessage();
                 }
 
                 function clearMessage() {
                     setTimeout(() => {
                         message.innerHTML = '';
+
+                        message.style.backgroundColor = 'white';
+                        message.style.border = '0px';
                     }, 3000);   
                 }
 
@@ -162,6 +168,7 @@ function insertMessageRow(tBody, message) {
     const td = tr.insertCell(0);
     td.textContent = message;
     td.colSpan = 4;
+    td.style.textAlign = 'center';
 }
 
 function insertTableRow(data) {

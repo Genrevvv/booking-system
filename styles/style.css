@@ -111,26 +111,45 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: left;
+    align-items: center;
 
-    height: 75px;
-    margin: 0;
+    width: 230px;
+    height: 130px;
+    margin-bottom: 0.5rem;
+
+    border-radius: 5%;
 }
 
 #message h4 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+#message table  {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#message table tr, #message table tr td{
+    border: 1px solid black;
     padding: 5px;
-    margin: 0;
 }
 
-#message p {
-    padding: 0;
-    margin: 0;
-    margin-bottom: 5px;
+#message table tr td:last-child {
+    background-color: white;
+    color: black;
+    font-weight: normal;
 }
 
-#message p span {
-    background-color: lightgray;
-    padding: 2px 5px;
-    border-radius: 10%;
+#message .error-message {
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: 5px 10px;
 }
 
