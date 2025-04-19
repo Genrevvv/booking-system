@@ -12,7 +12,7 @@
 
     # /clear-table
     $router->add('/clear-table', function() {
-        header('Contet-Type: appplication/json');
+        header('Content-Type: appplication/json');
 
         $db =connectDB();
 
