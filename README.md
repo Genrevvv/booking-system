@@ -1,5 +1,5 @@
 ## Booking System
-A simple booking system practice project in PHP.
+A simple booking system practice project made with PHP.]
 
 ### Requirements:
 1. PHP
